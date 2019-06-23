@@ -1,0 +1,22 @@
+language: java
+jdk: oraclejdk8
+install: true
+script:
+  - ./mvnw clean install
+
+cache:
+  directories:
+    - $HOME/.m2
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+deploy:
+  -
+    on:
+      branch: release
+    provider: bintray
+    skip_cleanup: true
+    file: target/bin/bintray.json
+    user: neisip
+    key: $BINTRAY_API_KEY
