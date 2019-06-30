@@ -1,4 +1,4 @@
-package com.alex.studentquestionaire.Domain;
+package com.alex.studentquestionaire.domain;
 import lombok.NonNull;
 import lombok.Value;
 
