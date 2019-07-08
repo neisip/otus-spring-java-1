@@ -1,5 +1,6 @@
 package com.alex.studentquestionaire;
 
+import com.alex.studentquestionaire.domain.ConsoleContext;
 import com.alex.studentquestionaire.service.ConsoleService;
 import com.alex.studentquestionaire.service.ConsoleServiceImpl;
 import lombok.NonNull;
@@ -27,7 +28,7 @@ public class ConsoleServiceTest {
     public void setUp() {
         scanner = mock(Scanner.class);
         out = mock(PrintStream.class);
-        sut = new ConsoleServiceImpl(out, scanner);
+        sut = new ConsoleServiceImpl(new ConsoleContext(out, scanner));
     }
 
     @Test

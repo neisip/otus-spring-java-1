@@ -19,7 +19,7 @@ public class QuizDAOImpl implements QuizDAO {
 
     private final @NonNull List<Map.Entry<Question, Answer>> quiz;
 
-    public QuizDAOImpl(@Value("${csv.name}") final @NonNull String csvName)  {
+    public QuizDAOImpl(@Value("${csv.name}_#{systemProperties['user.language']}.csv") final @NonNull String csvName)  {
         this.quiz = readQuizFromCSV(csvName);
     }
 

@@ -2,33 +2,26 @@ package com.alex.studentquestionaire.service;
 
 import com.alex.studentquestionaire.dao.QuizDAO;
 import com.alex.studentquestionaire.entity.QuizReport;
+import com.alex.studentquestionaire.i18n.LocalizedMessageSource;
 import lombok.NonNull;
 import lombok.val;
+
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
+
 @Service
 public class QuizServiceImpl implements QuizService {
-    public enum Result {
-        SUCCESS("Y're right!"),
-        FAILURE("Damn shame !");
-
-        private final @NonNull String text;
-
-        Result(final @NonNull String text) {
-            this.text = text;
-        }
-
-        @Override
-        public @NonNull String toString() {
-            return text;
-        }
-    }
-
+    public final static @NonNull String GREETING_NAME = "greeting.name";
+    public final static @NonNull String GREETING_FAMILY_NAME = "greeting.familyName";
+    public final static @NonNull String ANSWER_SUCCESS = "answer.success";
+    public final static @NonNull String ANSWER_FAILURE = "answer.failure";
     private @Nullable String name;
     private @Nullable String familyName;
     private @Nullable Integer successCount;
     private @Nullable Integer quizSize;
+
 
     @NonNull
     private final ConsoleService consoleService;
@@ -36,16 +29,24 @@ public class QuizServiceImpl implements QuizService {
     @NonNull
     private final QuizDAO dao;
 
-    public QuizServiceImpl(@NonNull QuizDAO dao, @NonNull ConsoleService consoleService) {
+    @NonNull
+    private final LocalizedMessageSource messageSource;
+
+    public QuizServiceImpl(@NonNull QuizDAO dao,
+                           @NonNull ConsoleService consoleService,
+                           @NonNull LocalizedMessageSource messageSource) {
         this.dao = dao;
         this.consoleService = consoleService;
+        this.messageSource = messageSource;
     }
 
     @Override
+
     public void askName() {
         var name = "";
         while (name.isBlank()) {
-            consoleService.println("Please Enter your Name in proper format:");
+            final String message = messageSource.getMessageFor(GREETING_NAME);
+            consoleService.println(message);
             name = consoleService.readLine();
         }
         this.name = name;
@@ -55,7 +56,8 @@ public class QuizServiceImpl implements QuizService {
     public void askFamilyName() {
         var familyName = "";
         while (familyName.isBlank()) {
-            consoleService.println("Please Enter your Family name in proper format:");
+            final String message = messageSource.getMessageFor(GREETING_FAMILY_NAME);
+            consoleService.println(message);
             familyName = consoleService.readLine();
         }
         this.familyName = familyName;
@@ -69,14 +71,15 @@ public class QuizServiceImpl implements QuizService {
         for (val e: quiz) {
             val q = e.getKey().getMsg();
             consoleService.println(q);
-            String o = consoleService.readLine();
+            final String o = consoleService.readLine();
 
             val a = e.getValue().getMsg();
+
             if (o.equals(a)) {
-                consoleService.println(Result.SUCCESS.toString());
+                consoleService.println(messageSource.getMessageFor(ANSWER_SUCCESS));
                 successCount++;
             } else {
-                consoleService.println(Result.FAILURE.toString());
+                consoleService.println(messageSource.getMessageFor(ANSWER_FAILURE));
                 consoleService.println(a);
             }
         }
