@@ -1,8 +1,7 @@
-package com.alex.studentquestionaire.Utils;
+package com.alex.studentquestionaire.utils;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.lang.NonNull;
 import lombok.val;
@@ -13,6 +12,7 @@ import java.util.List;
 
 public class CSVReader {
     //Took from baeldung
+
     public <T> List<T> loadObjectList(@NonNull Class<T> type, @NonNull String fileName) {
         try {
             val mapper = new CsvMapper();
