@@ -1,5 +1,6 @@
 package com.alex.studentquestionaire;
 
+import com.alex.studentquestionaire.config.ApplicationConfigProperties;
 import com.alex.studentquestionaire.dao.QuizDAO;
 import com.alex.studentquestionaire.dao.QuizDAOImpl;
 import com.alex.studentquestionaire.exceptions.CSVInconsistencyException;
