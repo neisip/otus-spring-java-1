@@ -2,6 +2,7 @@ package com.alex.studentquestionaire;
 
 import com.alex.studentquestionaire.service.QuestionnaireService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -15,9 +16,14 @@ public class StudentQuestionnaireApplication {
 	@Autowired
 	private QuestionnaireService service;
 
+	@Value("${start}")
+	private boolean shouldStart;
+
 	@PostConstruct
 	private void runQuiz() {
-		service.askQuestions();
+		if (shouldStart) {
+			service.askQuestions();
+		}
 	}
 
 
