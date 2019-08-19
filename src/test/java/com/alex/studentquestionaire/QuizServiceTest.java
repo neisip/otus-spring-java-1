@@ -5,11 +5,24 @@ import com.alex.studentquestionaire.domain.Answer;
 import com.alex.studentquestionaire.domain.Question;
 import com.alex.studentquestionaire.i18n.LocalizedMessageSource;
 import com.alex.studentquestionaire.service.ConsoleService;
+import com.alex.studentquestionaire.service.QuestionnaireService;
 import com.alex.studentquestionaire.service.QuizService;
 import com.alex.studentquestionaire.service.QuizServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import lombok.val;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -18,22 +31,35 @@ import java.util.Map;
 
 import static org.mockito.Mockito.*;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@TestPropertySource(properties = {
+        "start=false",
+})
 public class QuizServiceTest {
 
+    @MockBean
     private ConsoleService consoleService;
-    private QuizDAO quizDAO;
-    private QuizService sut;
-    private LocalizedMessageSource messageSource = mock(LocalizedMessageSource.class);
 
-    @Before
-    public void setUp() {
-        consoleService = mock(ConsoleService.class);
-        quizDAO = mock(QuizDAO.class);
-        sut = new QuizServiceImpl(quizDAO, consoleService, messageSource);
-    }
+    @MockBean
+    private QuizDAO quizDAO;
+
+    @Autowired
+    private QuizService sut;
+
+    @MockBean
+    private LocalizedMessageSource messageSource; //= mock(LocalizedMessageSource.class);
+
+//    @Before
+//    public void setUp() {
+//        //consoleService = mock(ConsoleService.class);
+//        //quizDAO = mock(QuizDAO.class);
+//        //sut = new QuizServiceImpl(quizDAO, consoleService, messageSource);
+//    }
 
     @Test
     public void itAsksName() {
+
         when(messageSource.getMessageFor(QuizServiceImpl.GREETING_NAME)).thenReturn("N");
 
         val name = "A";

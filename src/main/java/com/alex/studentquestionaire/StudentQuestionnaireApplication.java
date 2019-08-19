@@ -1,27 +1,30 @@
 package com.alex.studentquestionaire;
 
 import com.alex.studentquestionaire.service.QuestionnaireService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import lombok.val;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@Configuration
-@ComponentScan
+import javax.annotation.PostConstruct;
+
+@SpringBootApplication
 public class StudentQuestionnaireApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { SpringApplication.run(StudentQuestionnaireApplication.class, args); }
 
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(StudentQuestionnaireApplication.class);
-		val qs = context.getBean(QuestionnaireService.class);
-		qs.askQuestions();
+	@Autowired
+	private QuestionnaireService service;
+
+	@Value("${start}")
+	private boolean shouldStart;
+
+	@PostConstruct
+	private void runQuiz() {
+		if (shouldStart) {
+			service.askQuestions();
+		}
 	}
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+
 }

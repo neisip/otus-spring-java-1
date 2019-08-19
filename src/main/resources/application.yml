@@ -1,0 +1,7 @@
+csv-name: DumbQuestions
+message-source: messages
+supported-locales:
+  - ru
+  - en
+
+start: true
