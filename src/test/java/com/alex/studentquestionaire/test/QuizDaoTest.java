@@ -1,6 +1,5 @@
-package com.alex.studentquestionaire;
+package com.alex.studentquestionaire.test;
 
-import com.alex.studentquestionaire.config.ApplicationConfigProperties;
 import com.alex.studentquestionaire.dao.QuizDAO;
 import com.alex.studentquestionaire.dao.QuizDAOImpl;
 import com.alex.studentquestionaire.exceptions.CSVInconsistencyException;
@@ -11,7 +10,8 @@ import lombok.val;
 import org.springframework.lang.Nullable;
 
 public class QuizDaoTest {
-    private @Nullable QuizDAO sut;
+    private @Nullable
+    QuizDAO sut;
 
     @Before
     public void setUp() {

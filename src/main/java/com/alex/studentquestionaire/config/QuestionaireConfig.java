@@ -5,7 +5,6 @@ import com.alex.studentquestionaire.dao.QuizDAOImpl;
 import com.alex.studentquestionaire.domain.ConsoleContext;
 import lombok.NonNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Value;

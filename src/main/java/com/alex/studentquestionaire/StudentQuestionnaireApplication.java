@@ -12,10 +12,10 @@ import javax.annotation.PostConstruct;
 public class StudentQuestionnaireApplication {
 
 	public static void main(String[] args) { SpringApplication.run(StudentQuestionnaireApplication.class, args); }
-
+//
 	@Autowired
 	private QuestionnaireService service;
-
+//
 	@Value("${start}")
 	private boolean shouldStart;
 
