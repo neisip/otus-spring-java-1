@@ -1,12 +1,12 @@
 package com.alex.studentquestionaire.dao;
 
+import com.alex.studentquestionaire.config.ApplicationConfigProperties;
 import com.alex.studentquestionaire.domain.Answer;
 import com.alex.studentquestionaire.domain.Question;
 import com.alex.studentquestionaire.exceptions.CSVInconsistencyException;
 import com.alex.studentquestionaire.utils.CSVReader;
 import lombok.NonNull;
 import lombok.val;
-import lombok.var;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;

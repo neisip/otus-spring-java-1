@@ -4,11 +4,4 @@ supported-locales:
   - ru
   - en
 
-start: false
-
-spring:
-  profiles:
-    active: shell
-  shell:
-    interactive:
-      enabled: true
+start: true

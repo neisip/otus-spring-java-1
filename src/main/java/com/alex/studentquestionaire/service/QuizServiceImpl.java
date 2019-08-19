@@ -9,16 +9,18 @@ import lombok.val;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
+
 @Service
 public class QuizServiceImpl implements QuizService {
     public final static @NonNull String GREETING_NAME = "greeting.name";
     public final static @NonNull String GREETING_FAMILY_NAME = "greeting.familyName";
     public final static @NonNull String ANSWER_SUCCESS = "answer.success";
     public final static @NonNull String ANSWER_FAILURE = "answer.failure";
-    private @Nullable String name = "";
-    private @Nullable String familyName = "";
-    private @Nullable Integer successCount = 0;
-    private @Nullable Integer quizSize = 0 ;
+    private @Nullable String name;
+    private @Nullable String familyName;
+    private @Nullable Integer successCount;
+    private @Nullable Integer quizSize;
 
 
     @NonNull
@@ -41,8 +43,8 @@ public class QuizServiceImpl implements QuizService {
     @Override
 
     public void askName() {
-        String name = "";
-        while (name.length() == 0) {
+        var name = "";
+        while (name.isBlank()) {
             final String message = messageSource.getMessageFor(GREETING_NAME);
             consoleService.println(message);
             name = consoleService.readLine();
@@ -52,8 +54,8 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public void askFamilyName() {
-        String familyName = "";
-        while (familyName.length() == 0) {
+        var familyName = "";
+        while (familyName.isBlank()) {
             final String message = messageSource.getMessageFor(GREETING_FAMILY_NAME);
             consoleService.println(message);
             familyName = consoleService.readLine();

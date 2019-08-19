@@ -1,8 +1,8 @@
-package com.alex.studentquestionaire.test;
+package com.alex.studentquestionaire;
 
-import com.alex.studentquestionaire.service.ConsoleServiceImpl;
 import com.alex.studentquestionaire.domain.ConsoleContext;
 import com.alex.studentquestionaire.service.ConsoleService;
+import com.alex.studentquestionaire.service.ConsoleServiceImpl;
 import lombok.NonNull;
 import org.junit.Before;
 import org.junit.Test;

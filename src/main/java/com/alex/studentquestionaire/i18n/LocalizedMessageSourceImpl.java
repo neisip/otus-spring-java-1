@@ -3,7 +3,9 @@ package com.alex.studentquestionaire.i18n;
 import com.alex.studentquestionaire.config.ApplicationConfigProperties;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
