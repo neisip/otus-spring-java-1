@@ -1,18 +1,21 @@
 package com.alex.studentquestionaire.service;
 
 import lombok.NonNull;
+import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
-import org.springframework.stereotype.Service;
+import org.springframework.shell.standard.ShellMethodAvailability;
 
 @ShellComponent
-public class QuestionnaireServiceImpl implements QuestionnaireService {
+public class QuestionnaireControllerImpl implements QuestionnaireController {
 
     private final @NonNull QuizService quizService;
     private final @NonNull QuizResultOutputService outputService;
 
-    public QuestionnaireServiceImpl(@NonNull QuizService quizService,
-                                    @NonNull QuizResultOutputService outputService) {
+    private boolean hasAskedQuestions = false;
+
+    public QuestionnaireControllerImpl(@NonNull QuizService quizService,
+                                       @NonNull QuizResultOutputService outputService) {
 
         this.quizService = quizService;
         this.outputService = outputService;
@@ -33,11 +36,20 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     @ShellMethod(value = "Ask  questions", key = {"q", "questions"})
     public void askQuestions() {
         quizService.askQuizQuestions();
+        hasAskedQuestions = true;
 
     }
 
     @ShellMethod(value = "Report", key = {"r", "report"})
+    @ShellMethodAvailability("reportAvailabilityCheck")
     public void outputResult() {
         outputService.outputReport(quizService.buildReport());
     }
+
+    public Availability reportAvailabilityCheck() {
+        return hasAskedQuestions
+                ? Availability.available()
+                : Availability.unavailable("you didn't ask questions");
+    }
+
 }
