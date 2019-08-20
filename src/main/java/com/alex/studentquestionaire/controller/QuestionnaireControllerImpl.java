@@ -1,5 +1,7 @@
-package com.alex.studentquestionaire.service;
+package com.alex.studentquestionaire.controller;
 
+import com.alex.studentquestionaire.service.QuizResultOutputService;
+import com.alex.studentquestionaire.service.QuizService;
 import lombok.NonNull;
 import org.springframework.shell.Availability;
 import org.springframework.shell.standard.ShellComponent;
@@ -9,8 +11,10 @@ import org.springframework.shell.standard.ShellMethodAvailability;
 @ShellComponent
 public class QuestionnaireControllerImpl implements QuestionnaireController {
 
-    private final @NonNull QuizService quizService;
-    private final @NonNull QuizResultOutputService outputService;
+    private final @NonNull
+    QuizService quizService;
+    private final @NonNull
+    QuizResultOutputService outputService;
 
     private boolean hasAskedQuestions = false;
 

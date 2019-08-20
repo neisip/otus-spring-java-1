@@ -1,4 +1,4 @@
-package com.alex.studentquestionaire.service;
+package com.alex.studentquestionaire.controller;
 
 public interface QuestionnaireController {
     void askName();
