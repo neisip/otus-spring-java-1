@@ -10,7 +10,8 @@ public class QuizResultOutputServiceImpl implements QuizResultOutputService {
     public final static @NonNull String RESULT = "result";
 
     private final @NonNull ConsoleService consoleService;
-    private final @NonNull LocalizedMessageSource messageSource;
+    private final @NonNull
+    LocalizedMessageSource messageSource;
 
     public QuizResultOutputServiceImpl(@NonNull ConsoleService consoleService,
                                        @NonNull LocalizedMessageSource messageSource) {
